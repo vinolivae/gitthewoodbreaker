@@ -1,25 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovimentoPlayer : MonoBehaviour
 {
-    public float velocidadeMovimento;
-    public float limiteDeX;
+    [SerializeField] private float velocidadeMovimento;
+    [SerializeField] private float limiteDeX;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Vector2 mouse;
 
-    // Update is called once per frame
-    void Update()
+    private void Start() => Cursor.lockState = CursorLockMode.Locked;//ESC para destravar o cursor
+    void Update() => MoveByMouseXPosition();
+    private void MoveByMouseXPosition()
     {
-        float directionMouseX = Input.GetAxis("Mouse X"); // -1 =  esquerda; 0 = parado; 1 = direita
-        GetComponent<Transform>().position += Vector3.right * directionMouseX * velocidadeMovimento  * Time.deltaTime;
-        float xAtual = transform.position.x;
-        xAtual = Mathf.Clamp (xAtual, -limiteDeX, limiteDeX);
-        transform.position = new Vector3(xAtual, transform.position.y, transform.position.z);
+        mouse.x = Input.GetAxis("Mouse X") * velocidadeMovimento * Time.deltaTime;
+        var resultado = Mathf.Clamp(transform.position.x, -limiteDeX, limiteDeX);
+        transform.position = new Vector2(resultado, transform.position.y);
+        transform.Translate(mouse);
     }
 }

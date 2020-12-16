@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f301565d87b6b4db8fede336a6635c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeMovimento: 10
-  limiteDeX: 6.59
+  velocidadeMovimento: 35
+  limiteDeX: 5.81796
 --- !u!212 &478693199
 SpriteRenderer:
   m_ObjectHideFlags: 0
